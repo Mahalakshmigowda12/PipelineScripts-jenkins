@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('update the system') {
+            steps {
+                sh 'sudo yum update -y'
+            }
+        }
+        stage('install') {
+            steps {
+                sh 'sudo yum install httpd -y'
+            }
+        }
+        stage('start') {
+            steps {
+                sh 'sudo systemctl start httpd'
+            }
+        }
+        stage('status') {
+            steps {
+                sh 'systemctl status httpd'
+            }
+        }
+    }
+}
